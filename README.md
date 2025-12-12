@@ -7,7 +7,7 @@
 > The **assumptions** of this repository:
 >
 > 1. The **code works**.
-> 2. **On the day of writing**, it's **faster than at least 50% of the solutions in LeetCode** and **uses less memory than 50% of them**.
+> 2. **On the day of writing**, it's **faster than at least 50% of the solutions in LeetCode** and **uses less memory than 50% of them** - screenshots in [docs/solutions.md](./docs/solutions.md).
 > 3. It's **written in a fast-and-dirty manner**, because LeetCode isn't intended for learning clean coding.
 > 4. It's created mainly for **backup purposes**.
 
@@ -18,5 +18,3 @@ Keeping in mind that some more experienced recruiters actually browse GitHub, I 
 Yes, you're probably one of those recruiters :heart:
 
 Get comfortable in this repo and take a look at whatever you want.
-
-Solutions: [docs/solutions.md](./docs/solutions.md)
