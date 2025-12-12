@@ -1,6 +1,6 @@
 # Solutions
 
-[2025-12-12 Delete Node in a Linked List](../2025-12-11_leetcode_graphs_deleteInLinkedList.ts)
+[2025-12-11 Delete Node in a Linked List](../2025-12-11_leetcode_graphs_deleteInLinkedList.ts)
 
 <img src="./2025-12-11_leetcode_graphs_deleteInLinkedList.png" height="200"/>
 
