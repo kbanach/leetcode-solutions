@@ -63,6 +63,7 @@ export function checkGraphs(graphsOnlyTestExamples: any[], testedFn: Function): 
         const strOutputGraph = stringifyGraph(expected);
 
         const returnValue = testedFn(...inputs);
+        
         // some methods change 'in-place' the input
         const output = typeof returnValue !== 'undefined' ? returnValue : test[0];
 
