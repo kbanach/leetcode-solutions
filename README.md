@@ -3,7 +3,8 @@
 > [!IMPORTANT] 
 > Tested and coded with [`deno`](https://deno.com/) on Windows 11 :man_shrugging:
 
-> [!WARNING] The assumptions of this repository:
+> [!WARNING] 
+> The assumptions of this repository:
 >
 > 1. The code works.
 > 2. On the day of writing, it's faster than at least 50% of the solutions in LeetCode and uses less memory than 50% of them.
