@@ -18,3 +18,5 @@ Keeping in mind that some more experienced recruiters actually browse GitHub, I 
 Yes, you're probably one of those recruiters :heart:
 
 Get comfortable in this repo and take a look at whatever you want.
+
+Solutions: [docs/solutions.md](./docs/solutions.md)
