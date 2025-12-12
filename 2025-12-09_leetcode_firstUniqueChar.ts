@@ -1,4 +1,4 @@
-import { debug, check, c } from './debug_utils.ts';
+import { check } from './debug_utils.ts';
 
 /*
 First Unique Character in a String

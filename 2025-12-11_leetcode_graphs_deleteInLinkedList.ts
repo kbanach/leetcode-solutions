@@ -1,5 +1,5 @@
-import { debug, check, c, checkGraphs } from './debug_utils.ts';
-import { getLinkedListExample, debugGraph, deleteNodeByIdx, ListNode, getNodeByIdx, stringifyGraph, exampleList } from './graph_utils.ts';
+import { checkGraphs } from './debug_utils.ts';
+import { deleteNodeByIdx, ListNode, getNodeByIdx, exampleList } from './graph_utils.ts';
 
 /*
 Delete Node in a Linked List

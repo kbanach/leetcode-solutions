@@ -1,5 +1,5 @@
-import { debug, check, c, checkGraphs } from './debug_utils.ts';
-import { getLinkedListExample, debugGraph, deleteNodeByIdx, ListNode, getNodeByIdx, stringifyGraph, exampleList, stringifyNode, reverseLinkedList } from './graph_utils.ts';
+import { checkGraphs } from './debug_utils.ts';
+import { ListNode, exampleList, reverseLinkedList } from './graph_utils.ts';
 
 /*
 Reverse Linked List

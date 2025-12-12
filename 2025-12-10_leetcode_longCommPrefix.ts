@@ -1,4 +1,4 @@
-import { debug, check, c } from './debug_utils.ts';
+import { debug, check } from './debug_utils.ts';
 
 /*
 Longest Common Prefix

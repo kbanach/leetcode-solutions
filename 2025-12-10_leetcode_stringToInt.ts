@@ -1,4 +1,4 @@
-import { debug, check, c } from './debug_utils.ts';
+import { check } from './debug_utils.ts';
 
 /*
 String to Integer (atoi)

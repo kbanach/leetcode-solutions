@@ -1,5 +1,4 @@
-import { styleText } from 'node:util';
-import { debug, check } from './debug_utils.ts';
+import { check } from './debug_utils.ts';
 
 /**
  * Move Zeroes
