@@ -8,7 +8,7 @@
 
 [2025-12-12 Submissions Detail - Reverse Linked List](../2025-12-12_leetcode_graphs_reverseLinkedList.ts)
 
-![2025-12-12_leetcode_graphs_reverseLinkedList.png](2025-12-12_leetcode_graphs_reverseLinkedList.png){height=200}
+<img src="./2025-12-12_leetcode_graphs_reverseLinkedList.png" height="200"/>
 
 -----
 
