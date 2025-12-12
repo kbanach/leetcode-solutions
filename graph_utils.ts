@@ -23,6 +23,25 @@ export function getLinkedListExample(length: number = 10, offset: number = 0): L
 
 export const exampleList = getLinkedListExample;
 
+export function reverseLinkedList(root: ListNode | null): ListNode | null {
+    if (!root) return null;
+
+    let prevNode: ListNode | null = null;
+    let currentNode: ListNode | null = root;
+
+    while (currentNode && currentNode?.next) {
+        const nextNode: ListNode = currentNode.next;
+
+        currentNode.next = prevNode;
+        prevNode = currentNode;
+        currentNode = nextNode;
+    }
+
+    currentNode.next = prevNode;
+
+    return currentNode;
+}
+
 export function getNodeByIdx(root: ListNode, idx: number): ListNode | null {
     let currentNode: ListNode | null = root;
     let i = 0;
@@ -56,13 +75,13 @@ export function deleteNodeByIdx(root: ListNode, idx: number): ListNode {
     return root;
 }
 
-export function stringifyNode(node: ListNode|null) {
+export function stringifyNode(node: ListNode | null) {
     if (!node) return 'null';
-    
+
     return `val: ${node.val}, next: ${node.next ? 'yes' : null}`;
 }
 
-export function stringifyGraph(root: ListNode|null): string[] {
+export function stringifyGraph(root: ListNode | null): string[] {
     const output = [];
     let currentNode: ListNode | null = root;
 
@@ -82,7 +101,7 @@ export function debugGraph(root: ListNode | null, onlyOneElement = false) {
         outputStr += c(' ' + currentNode.val + ' ', ['bgBlue']) + ((currentNode.next && !onlyOneElement) ? ' -> ' : '');
         currentNode = currentNode.next;
 
-        if(onlyOneElement) break;
+        if (onlyOneElement) break;
     }
 
     debug(outputStr);
