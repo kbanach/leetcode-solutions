@@ -13,7 +13,7 @@
 
 Thank you for stopping by!
 
-Having on mind that some of more experienced recruiters actually browse GitHub, I made the repo public.
+Keeping in mind that some more experienced recruiters actually browse GitHub, I made the repository publicly available.
 
 Yes, you're probably one of those recruiters :heart:
 
