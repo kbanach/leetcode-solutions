@@ -3,16 +3,17 @@
 > [!IMPORTANT] 
 > Tested and coded with [`deno`](https://deno.com/) on Windows 11 :man_shrugging:
 
-The only reason this repository exists is because the more experienced recruiters actually browse GitHub.
-
-Yes, you're probably one of them :heart:
-
-Get comfortable in this repo and take a look at the code I was able to create on a given day in my life.
-
-**Important!** The assumptions of this repository:
-
-1. The code works.
-2. On the day of writing, it's faster than at least 50% of the solutions in LeetCode and uses less memory than 50% of them.
-3. It's written in a fast-and-dirty manner, because LeetCode isn't intended for learning clean coding.
+> [!WARNING] The assumptions of this repository:
+>
+> 1. The code works.
+> 2. On the day of writing, it's faster than at least 50% of the solutions in LeetCode and uses less memory than 50% of them.
+> 3. It's written in a fast-and-dirty manner, because LeetCode isn't intended for learning clean coding.
+> 4. It's created mainly for backup purposes.
 
 Thank you for stopping by!
+
+Having on mind that some of more experienced recruiters actually browse GitHub, I made the repo public.
+
+Yes, you're probably one of those recruiters :heart:
+
+Get comfortable in this repo and take a look at whatever you want.
