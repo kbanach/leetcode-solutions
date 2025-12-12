@@ -56,12 +56,18 @@ export function deleteNodeByIdx(root: ListNode, idx: number): ListNode {
     return root;
 }
 
+export function stringifyNode(node: ListNode|null) {
+    if (!node) return 'null';
+    
+    return `val: ${node.val}, next: ${node.next ? 'yes' : null}`;
+}
+
 export function stringifyGraph(root: ListNode|null): string[] {
     const output = [];
     let currentNode: ListNode | null = root;
 
     while (currentNode !== null) {
-        output.push(`val: ${currentNode.val}, next: ${currentNode.next ? 'yes' : null}`);
+        output.push(stringifyNode(currentNode));
         currentNode = currentNode.next;
     }
 

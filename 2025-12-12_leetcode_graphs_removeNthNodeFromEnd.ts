@@ -1,5 +1,5 @@
 import { debug, check, c, checkGraphs } from './debug_utils.ts';
-import { getLinkedListExample, debugGraph, deleteNodeByIdx, ListNode, getNodeByIdx, stringifyGraph, exampleList } from './graph_utils.ts';
+import { getLinkedListExample, debugGraph, deleteNodeByIdx, ListNode, getNodeByIdx, stringifyGraph, exampleList, stringifyNode } from './graph_utils.ts';
 
 /*
 Remove Nth Node From End of List
@@ -45,18 +45,37 @@ Given the `head` of a linked list, remove the `n` node from the end of the list 
  */
 
 function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
-    
+    const idx: ListNode[] = [];
+    let currentNode = head;
+
+    while (currentNode) {
+        idx.push(currentNode);
+        currentNode = currentNode.next;
+    }
+
+    // 0. there is only one node to remove
+    if (idx.length === 1 && n === 1) {
+        return null;
+    }
+
+    // 1. removed node is head
+    if (idx.length - n === 0) {
+        return idx[1];
+    }
+
+    // 2. removed node has other nodes before it
+    const prevNode = idx[idx.length - n - 1];
+    if (prevNode) {
+        prevNode.next = prevNode.next?.next ?? null;
+    }
+
+    return head;
 };
 
-// const a = getLinkedListExample();
-// debugGraph(a);
-// console.table(stringifyGraph(a));
-// debugGraph(getNodeByIdx(a, 3), true);
-// debugGraph(deleteNodeByIdx(a, 3));
-// debugGraph(deleteNodeByIdx(a, 0));
+
 
 const testExamples: [ListNode | null, number, ListNode | null][] = [
-    // [ input , expected ]
+    // [ input, idx to remove (from end), expected ]
     [exampleList(5, 1), 2, deleteNodeByIdx(exampleList(5, 1), 3)],
     [exampleList(10, 1), 2, deleteNodeByIdx(exampleList(10, 1), 8)],
     [exampleList(1, 1), 1, null],
