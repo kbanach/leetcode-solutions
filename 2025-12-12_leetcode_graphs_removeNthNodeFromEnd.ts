@@ -75,7 +75,6 @@ function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
 
 
 const testExamples: [ListNode | null, number, ListNode | null][] = [
-    // [ input, idx to remove (from end), expected ]
     [exampleList(5, 1), 2, deleteNodeByIdx(exampleList(5, 1), 3)],
     [exampleList(10, 1), 2, deleteNodeByIdx(exampleList(10, 1), 8)],
     [exampleList(1, 1), 1, null],

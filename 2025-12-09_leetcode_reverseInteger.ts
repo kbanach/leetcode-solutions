@@ -57,7 +57,6 @@ function reverse(x: number): number {
 
 
 const testExamples: [number, number][] = [
-    // [ input, expected ]
     [123, 321],
     [-123, -321],
     [120, 21],

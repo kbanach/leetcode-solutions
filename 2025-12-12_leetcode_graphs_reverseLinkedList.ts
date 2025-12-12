@@ -64,7 +64,6 @@ function reverseList(head: ListNode | null): ListNode | null {
 };
 
 const testExamples: [ListNode | null, ListNode | null][] = [
-    // [ input, idx to remove (from end), expected ]
     [exampleList(5, 1), reverseLinkedList(exampleList(5, 1))],
     [exampleList(10, 1), reverseLinkedList(exampleList(10, 1))],
     [exampleList(2, 1), reverseLinkedList(exampleList(2, 1))],

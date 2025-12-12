@@ -28,33 +28,6 @@
  * It does not matter what you leave beyond the returned k (hence they are underscores).
  */
 
-//// moje oryginalne, pierwsze rozwiazanie ktore dziala:
-// function removeDuplicates(nums: number[]): number {
-//     const sorted: number[] = [];
-//     const leftovers: number[] = [];
-    
-//     if (nums.length === 0) return 0;
-//     if (nums.length === 1) return 1;
-
-//     sorted.push(nums[0]);
-
-//     for (let i = 1; nums.length > i; i++) {
-//         if (sorted[sorted.length - 1] !== nums[i]) {
-//             // new, different
-//             sorted.push(nums[i]);
-//         } else {
-//             // same, stack to leftovers
-//             leftovers.push(nums[i]);
-//         }
-//     }
-    
-//     [...sorted, ...leftovers].forEach((v, i) => {
-//         nums[i] = v;
-//     })
-
-//     return sorted.length;
-// };
-
 //// optymalna, inspirowana odpowiedziami:
 function removeDuplicates(nums: number[]): number {
     let currentUniqueVal = nums[0];

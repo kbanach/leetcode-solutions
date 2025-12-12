@@ -215,7 +215,6 @@ function FASTER_isValidSudoku(board: string[][]): boolean {
 }
 
 const testExamples: [string[][], boolean][] = [
-    // [ input, expected ]
     [
         [["5", "3", ".", ".", "7", ".", ".", ".", "."]
             , ["6", ".", ".", "1", "9", "5", ".", ".", "."]
@@ -254,5 +253,4 @@ const testExamples: [string[][], boolean][] = [
     ]
 ];
 
-// check(testExamples, isValidSudoku);
 check(testExamples, FASTER_isValidSudoku);

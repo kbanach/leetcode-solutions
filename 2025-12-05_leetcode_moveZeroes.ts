@@ -155,7 +155,6 @@ function moveZeroes(nums: number[]): void {
 };
 
 const testExamples: [number[], number[]][] = [
-    // [ input, expected ]
     [[0, 1, 0, 3, 12], [1, 3, 12, 0, 0]],
     [[0], [0]],
     [[1, 0], [1, 0]],

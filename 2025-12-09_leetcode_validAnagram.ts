@@ -48,7 +48,6 @@ function isAnagram(s: string, t: string): boolean {
 };
 
 const testExamples: [string, string, boolean][] = [
-    // [ input, expected ]
     ['anagram', 'nagaram', true],
     ['rat', 'car', false],
     ];

@@ -49,7 +49,6 @@ function firstUniqChar(s: string): number {
 };
 
 const testExamples: [string, number][] = [
-    // [ input, expected ]
     ['leetcode', 0],
     ['loveleetcode', 2],
     ['aabb', -1],

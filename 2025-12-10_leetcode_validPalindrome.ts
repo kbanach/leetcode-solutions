@@ -37,55 +37,6 @@ Given a string `s`, return `true`* if it is a **palindrome**, or *`false`* other
 
 */
 
-// function isPalindrome(s: string): boolean {
-//     const ASCII_NUMBERS = [48,57];
-//     const ASCII_LOWERCASE = [97,122];
-
-//     const filtered = Array.from(s.toLocaleLowerCase()).filter((c) => {
-//         const charCode = c.charCodeAt(0);
-//         return (charCode >= ASCII_NUMBERS[0] && charCode <= ASCII_NUMBERS[1]) || (charCode >= ASCII_LOWERCASE[0] && charCode <= ASCII_LOWERCASE[1]);
-//     });
-
-//     debug('s', s, 'filtered',filtered);
-
-//     for (let i = 0; i < filtered.length / 2; i++) {
-//         if (filtered[i] !== filtered[filtered.length - 1 - i]) {
-//             return false;
-//         }
-//     }
-
-//     return true;
-// };
-
-// function isPalindrome(s: string): boolean {
-//     const ASCII_NUMBERS = [48,57];
-//     const UPPER_LOWER_DIFF = 32;
-//     const ASCII_UPPERCASE = [65,90];
-//     const ASCII_LOWERCASE = [ASCII_UPPERCASE[0] + UPPER_LOWER_DIFF,ASCII_UPPERCASE[1] + UPPER_LOWER_DIFF];
-
-//     const filtered = Array.from(s.toLocaleLowerCase())
-//         .map((c) => c.charCodeAt(0))
-//         .map(cCode => {
-//             if (cCode >= ASCII_UPPERCASE[0] && cCode <= ASCII_UPPERCASE[1]) {
-//                 return cCode + UPPER_LOWER_DIFF;
-//             }
-//             return cCode;
-//         })
-//         .filter((cCode) => {
-//             return (cCode >= ASCII_NUMBERS[0] && cCode <= ASCII_NUMBERS[1]) || (cCode >= ASCII_LOWERCASE[0] && cCode <= ASCII_LOWERCASE[1]);
-//         });
-
-//     debug('s', s, 'filtered',filtered);
-
-//     for (let i = 0; i < filtered.length / 2; i++) {
-//         if (filtered[i] !== filtered[filtered.length - 1 - i]) {
-//             return false;
-//         }
-//     }
-
-//     return true;
-// };
-
 function isAlphaChar(cCode: number): boolean {
     const UPPER_LOWER_DIFF = 32;
     const ASCII_UPPERCASE = [65, 90];
@@ -139,7 +90,6 @@ function isPalindrome(s: string): boolean {
 };
 
 const testExamples: [string, boolean][] = [
-    // [ input, expected ]
     ['A man, a plan, a canal: Panama', true],
     ['race a car', false],
     [' ', true],

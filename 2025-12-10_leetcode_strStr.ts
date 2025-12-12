@@ -50,7 +50,6 @@ function strStr(haystack: string, needle: string): number {
 };
 
 const testExamples: [string, string, number][] = [
-    // [ haystack , needle, expected ]
     ['sadbutsad', 'sad', 0],
     ['leetcode', 'leeto', -1],
     ['aaa', 'aaaa', -1],

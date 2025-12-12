@@ -115,7 +115,6 @@ function rotate(matrix: number[][]): void {
 
 
 const testExamples: [number[][], number[][]][] = [
-    // [ input, expected ]
     [
         [[1, 2, 3], [4, 5, 6], [7, 8, 9]],
         [[7, 4, 1], [8, 5, 2], [9, 6, 3]],
@@ -145,5 +144,4 @@ const testExamples: [number[][], number[][]][] = [
     ]
 ];
 
-// check(testExamples, isValidSudoku);
 check(testExamples, rotate);

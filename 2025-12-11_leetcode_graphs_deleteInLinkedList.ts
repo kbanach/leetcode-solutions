@@ -63,15 +63,7 @@ function deleteNode(node: ListNode | null): void {
     node!.next = node!.next!.next
 };
 
-// const a = getLinkedListExample();
-// debugGraph(a);
-// console.table(stringifyGraph(a));
-// debugGraph(getNodeByIdx(a, 3), true);
-// debugGraph(deleteNodeByIdx(a, 3));
-// debugGraph(deleteNodeByIdx(a, 0));
-
 const testExamples: [ListNode | null, ListNode | null][] = [
-    // [ input , expected ]
     [exampleList(), exampleList().next],
     [getNodeByIdx(exampleList(), 3), getNodeByIdx(deleteNodeByIdx(exampleList(), 3), 3)],
 ];

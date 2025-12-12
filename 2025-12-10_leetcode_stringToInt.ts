@@ -119,7 +119,6 @@ function myAtoi(s: string): number {
 };
 
 const testExamples: [string, number][] = [
-    // [ input, expected ]
     ['42', 42],
     ['-42', -42],
     ['1337c0d3', 1337],

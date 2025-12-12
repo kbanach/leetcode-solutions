@@ -38,7 +38,6 @@ function reverseString(s: string[]): void {
 
 
 const testExamples: [string[], string[]][] = [
-    // [ input, expected ]
     [
         ["h","e","l","l","o"],
         ["o","l","l","e","h"]

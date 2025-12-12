@@ -61,7 +61,6 @@ function longestCommonPrefix(strs: string[]): string {
 };
 
 const testExamples: [string[], string][] = [
-    // [ haystack , needle, expected ]
     [["flower", "flow", "flight"], "fl"],
     [["dog", "racecar", "car"], ''],
     [['', 'aaa', 'aaa'], ''],
