@@ -9,7 +9,7 @@ export class ListNode {
     }
 }
 
-export function getLinkedListExample(length: number = 10, offset: number = 0): ListNode {
+function getLinkedListExample(length: number = 10, offset: number = 0): ListNode {
     const root = new ListNode(0 + offset);
     let currentNode = root;
 
@@ -22,6 +22,20 @@ export function getLinkedListExample(length: number = 10, offset: number = 0): L
 }
 
 export const exampleList = getLinkedListExample;
+
+function createLinkedListFromArray(values: ListNode['val'][]): ListNode {
+    const root = new ListNode(values[0]);
+    let currentNode = root;
+
+    for (let i = 1; i < values.length; i++) {
+        currentNode.next = new ListNode(values[i]);
+        currentNode = currentNode.next;
+    }
+
+    return root;
+}
+
+export const arrToList = createLinkedListFromArray;
 
 export function reverseLinkedList(root: ListNode | null): ListNode | null {
     if (!root) return null;
