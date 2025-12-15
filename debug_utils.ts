@@ -1,10 +1,10 @@
-import { styleText } from 'node:util';
+import { isArray, styleText } from 'node:util';
 import { performance } from 'node:perf_hooks';
-import { ListNode, debugGraph, stringifyGraph } from './graph_utils.ts';
+import { ListNode, debugGraph, stringifyGraph, stringifyNode } from './graph_utils.ts';
 
 function startMeasuringPerformance(): void {
-        performance.clearMeasures();
-        performance.mark('mark_function_start');
+    performance.clearMeasures();
+    performance.mark('mark_function_start');
 }
 
 function stopMeasuringPerformance(): void {
@@ -13,13 +13,13 @@ function stopMeasuringPerformance(): void {
 
 function logPerformanceResults(): void {
     const perfResults = performance.measure(
-                'measure_func_perf',
-                'mark_function_start',
-                'mark_function_end'
-            );
+        'measure_func_perf',
+        'mark_function_start',
+        'mark_function_end'
+    );
     const runTimeMs = perfResults.duration;
 
-    console.log(`Run took:\t${c(' '+(runTimeMs.toFixed(4)+'ms '), ['bgGray'])}`)
+    console.log(`Run took:\t${c(' ' + (runTimeMs.toFixed(4) + 'ms '), ['bgGray'])}`)
 }
 
 export function debug(...log: any[]) {
@@ -63,6 +63,64 @@ export function check(testExamples: any[], testedFn: Function): void {
     }
 }
 
+function toStr(a: any): string {
+    if (a instanceof ListNode) return stringifyNode(a);
+
+    if (Array.isArray(a)) return a.map(toStr).join(',');
+
+    switch (typeof a) {
+        case 'string':
+            return a;
+
+        case 'number':
+        case 'bigint':
+        case 'boolean':
+            return String(a);
+
+        case 'object':
+            return JSON.stringify(a);
+
+        case 'symbol':
+        case 'undefined':
+        case 'function':
+        default:
+            throw new Error(`Trying to stringify element of type "${typeof a}"`);
+    }
+}
+
+function isEqual(a: any, b: any): boolean {
+    if (typeof a !== typeof b) return false;
+
+    if (typeof a === 'boolean' && typeof b === 'boolean') {
+        return a === b;
+    }
+
+    if (typeof a === 'string' && typeof b === 'string') {
+        return a === b;
+    }
+
+    if (typeof a === 'number' && typeof b === 'number') {
+        return a === b;
+    }
+
+    if (typeof a === 'object' && typeof b === 'object') {
+        return JSON.stringify(a) === JSON.stringify(b);
+    }
+
+    if (Array.isArray(a) && Array.isArray(b)) {
+        if (a.length !== b.length) return false;
+        if (a.map(toStr).join(',') !== b.map(toStr).join(',')) return false;
+
+        return true;
+    }
+
+    if (a instanceof ListNode && b instanceof ListNode) {
+        return isEqual(stringifyGraph(a), stringifyGraph(b));
+    }
+
+    throw new Error(`Unhandled types: A of type "${typeof a}" or B of type "${typeof b}"`);
+}
+
 export function checkGraphs(graphsOnlyTestExamples: any[], testedFn: Function): void {
     let moreThanOne = false;
 
@@ -79,12 +137,10 @@ export function checkGraphs(graphsOnlyTestExamples: any[], testedFn: Function): 
             if (e instanceof ListNode) {
                 debugGraph(e);
             } else {
-                console.log(JSON.stringify(e));
+                console.log(toStr(e));
             }
         });
         console.log(`## END ##\n`);
-
-        const strOutputGraph = stringifyGraph(expected);
 
         startMeasuringPerformance();
         const returnValue = testedFn(...inputs);
@@ -92,17 +148,28 @@ export function checkGraphs(graphsOnlyTestExamples: any[], testedFn: Function): 
         logPerformanceResults();
 
         // some methods change 'in-place' the input
-        const output = typeof returnValue !== 'undefined' ? returnValue : test[0];
+        const actualOutput = typeof returnValue !== 'undefined' ? returnValue : test[0];
 
-        if (String(strOutputGraph) !== String(stringifyGraph(output))) {
-            console.log(`${c(' ! ', ['bgRed', 'white'])} Expected:`);
-            console.table(strOutputGraph);
-            console.log(c(' Received: ', ['bgRed', 'white']));
-            console.table(stringifyGraph(output));
+        // convert to string, so it's easier to compare
+        if (!isEqual(expected, actualOutput)) {
+            console.log(`${c(' ! ', ['bgRed', 'white'])} Expected: ${toStr(expected)}`);
+
+            if (actualOutput instanceof ListNode) {
+                console.log(c(' Received: ', ['bgRed', 'white']));
+                console.table(stringifyGraph(actualOutput));
+            } else {
+                console.log(c(` Received: \t${toStr(actualOutput)}`, ['bgRed', 'white']));
+            }
         } else {
-            console.log(`Received: ${c('\t OK! ', ['bgGreen', 'white'])}`)
-            debugGraph(output);
+            if (actualOutput instanceof ListNode) {
+                console.log(`Received: ${c('\t OK! ', ['bgGreen', 'white'])}`);
+                debugGraph(actualOutput);
+            } else {
+                // make it as small as possible
+                console.log(`Received: ${c('\t OK! ', ['bgGreen', 'white'])}`, toStr(actualOutput));
+            }
         }
+
         moreThanOne = true;
     }
 }
