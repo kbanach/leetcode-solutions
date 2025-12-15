@@ -1,5 +1,5 @@
-import { checkGraphs } from './debug_utils.ts';
-import { deleteNodeByIdx, ListNode, exampleList } from './graph_utils.ts';
+import { checkGraphs } from '../debug_utils.ts';
+import { deleteNodeByIdx, ListNode, exampleList } from '../graph_utils.ts';
 
 /*
 Remove Nth Node From End of List

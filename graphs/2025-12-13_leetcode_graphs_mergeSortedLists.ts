@@ -1,5 +1,5 @@
-import { c, checkGraphs, debug } from './debug_utils.ts';
-import { ListNode, arrToList, debugGraph, exampleList, stringifyNode } from './graph_utils.ts';
+import { c, checkGraphs, debug } from '../debug_utils.ts';
+import { ListNode, arrToList, debugGraph, exampleList, stringifyNode } from '../graph_utils.ts';
 
 /*
 Merge Two Sorted Lists
