@@ -29,6 +29,7 @@ Given the `head` of a singly linked list, return `true`* if it is a **palindrome
 
 */
 
+// runtime: 27ms/25.28%; memory: 85.26/24.37%
 function isPalindrome(head: ListNode | null): boolean {
     if (!head) return false;
 
