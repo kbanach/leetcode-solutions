@@ -1,6 +1,6 @@
 import { styleText } from 'node:util';
-import { ListNode, debugGraph, stringifyGraph } from './graph_utils.ts';
 import { performance } from 'node:perf_hooks';
+import { ListNode, debugGraph, stringifyGraph } from './graph_utils.ts';
 
 function startMeasuringPerformance(): void {
         performance.clearMeasures();
