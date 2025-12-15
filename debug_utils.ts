@@ -22,47 +22,6 @@ function logPerformanceResults(): void {
     console.log(`Run took:\t${c(' ' + (runTimeMs.toFixed(4) + 'ms '), ['bgGray'])}`)
 }
 
-export function debug(...log: any[]) {
-    let s = [...log];
-    console.log(s.join('\t'));
-}
-
-export function check(testExamples: any[], testedFn: Function): void {
-    for (let test of testExamples) {
-        const expected = test[test.length - 1];
-        const [...inputs] = test.slice(0, -1);
-
-        if (inputs[0] instanceof Array) {
-            console.log(`## START ##\nInput:`);
-            inputs.forEach((e) => {
-                if (e instanceof Array) {
-                    console.table(e)
-                } else {
-                    console.log(JSON.stringify(e));
-                }
-            });
-            console.log(`## END ##\n`);
-        } else {
-            console.log(`Input:     \t${inputs}`);
-        }
-
-        startMeasuringPerformance();
-        const returnValue = testedFn(...inputs);
-        stopMeasuringPerformance();
-        logPerformanceResults();
-
-        // some methods change 'in-place' the input
-        const output = typeof returnValue !== 'undefined' ? returnValue : test[0];
-
-        if (String(output) !== String(expected)) {
-            console.log(`${c(' ! ', ['bgRed', 'white'])} Expected:   \t${expected} \tgot: ${c('' + output, ['bgRed', 'white'])}`);
-        } else {
-            console.log(`Received: \t${output}`, c('\t OK! ', ['bgGreen', 'white']));
-        }
-        console.log('\n');
-    }
-}
-
 function toStr(a: any): string {
     if (a instanceof ListNode) return stringifyNode(a);
 
@@ -121,6 +80,48 @@ function isEqual(a: any, b: any): boolean {
     throw new Error(`Unhandled types: A of type "${typeof a}" or B of type "${typeof b}"`);
 }
 
+export function debug(...log: any[]) {
+    let s = [...log];
+    console.log(s.join('\t'));
+}
+
+export function check(testExamples: any[], testedFn: Function): void {
+    for (let test of testExamples) {
+        const expected = test[test.length - 1];
+        const [...inputs] = test.slice(0, -1);
+
+        if (inputs[0] instanceof Array) {
+            console.log('Input:');
+            inputs.forEach((e: any) => {
+                if (e instanceof Array) {
+                    console.table(e)
+                } else {
+                    console.log(toStr(e));
+                }
+            });
+        } else {
+            console.log(`Input:     \t${inputs}`);
+        }
+
+        startMeasuringPerformance();
+        const returnValue = testedFn(...inputs);
+        stopMeasuringPerformance();
+        logPerformanceResults();
+
+        // some methods change 'in-place' the input
+        const output = typeof returnValue !== 'undefined' ? returnValue : test[0];
+
+        // if (String(output) !== String(expected)) {
+        if (isEqual(output, expected)) {
+            console.log(`Received: \t${output}`, c('\t OK! ', ['bgGreen', 'white']));
+        } else {
+            console.log(`${c(' ! ', ['bgRed', 'white'])} Expected:   \t${expected} \tgot: ${c('' + output, ['bgRed', 'white'])}`);
+        }
+        console.log('\n');
+    }
+}
+
+
 export function checkGraphs(graphsOnlyTestExamples: any[], testedFn: Function): void {
     let moreThanOne = false;
 
@@ -132,15 +133,14 @@ export function checkGraphs(graphsOnlyTestExamples: any[], testedFn: Function): 
         const expected = test[test.length - 1];
         const [...inputs] = test.slice(0, -1);
 
-        console.log(`## START ##\nInput:`);
-        inputs.forEach((e, idx: number) => {
+        console.log(`Input:`);
+        inputs.forEach((e: any) => {
             if (e instanceof ListNode) {
                 debugGraph(e);
             } else {
                 console.log(toStr(e));
             }
         });
-        console.log(`## END ##\n`);
 
         startMeasuringPerformance();
         const returnValue = testedFn(...inputs);
@@ -150,8 +150,17 @@ export function checkGraphs(graphsOnlyTestExamples: any[], testedFn: Function): 
         // some methods change 'in-place' the input
         const actualOutput = typeof returnValue !== 'undefined' ? returnValue : test[0];
 
-        // convert to string, so it's easier to compare
-        if (!isEqual(expected, actualOutput)) {
+        if (isEqual(expected, actualOutput)) {
+            // all fine
+            if (actualOutput instanceof ListNode) {
+                console.log(`Received: ${c('\t OK! ', ['bgGreen', 'white'])}`);
+                debugGraph(actualOutput);
+            } else {
+                // make it as small as possible
+                console.log(`Received: ${c('\t OK! ', ['bgGreen', 'white'])}`, toStr(actualOutput));
+            }
+        } else {
+            // expected and received are different
             console.log(`${c(' ! ', ['bgRed', 'white'])} Expected: ${toStr(expected)}`);
 
             if (actualOutput instanceof ListNode) {
@@ -159,14 +168,6 @@ export function checkGraphs(graphsOnlyTestExamples: any[], testedFn: Function): 
                 console.table(stringifyGraph(actualOutput));
             } else {
                 console.log(c(` Received: \t${toStr(actualOutput)}`, ['bgRed', 'white']));
-            }
-        } else {
-            if (actualOutput instanceof ListNode) {
-                console.log(`Received: ${c('\t OK! ', ['bgGreen', 'white'])}`);
-                debugGraph(actualOutput);
-            } else {
-                // make it as small as possible
-                console.log(`Received: ${c('\t OK! ', ['bgGreen', 'white'])}`, toStr(actualOutput));
             }
         }
 
