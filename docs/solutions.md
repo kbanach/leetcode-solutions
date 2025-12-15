@@ -21,3 +21,9 @@
 [2025-12-13 Merge Two Sorted Lists](../graphs/2025-12-13_leetcode_graphs_mergeSortedLists.ts)
 
 <img src="2025-12-13_leetcode_graphs_mergeSortedLists.png" height="200"/>
+
+-----
+
+[2025-12-15 Palindrome Linked List](../graphs/2025-12-15_leetcode_palindromeLinkedList.ts)
+
+<img src="2025-12-15_leetcode_palindromeLinkedList.png" height="200"/>

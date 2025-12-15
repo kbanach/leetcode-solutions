@@ -1,6 +1,5 @@
-import { debug } from "node:console";
 import { checkGraphs } from "../debug_utils.ts";
-import { arrToList, debugGraph, ListNode, stringifyNode } from "../graph_utils.ts";
+import { arrToList, ListNode } from "../graph_utils.ts";
 
 /*
 Palindrome Linked List
@@ -29,53 +28,101 @@ Given the `head` of a singly linked list, return `true`* if it is a **palindrome
 
 */
 
-// runtime: 27ms/25.28%; memory: 85.26/24.37%
+// // runtime: 27ms/25.28%; memory: 85.26/24.37%
+// function isPalindrome(head: ListNode | null): boolean {
+//     if (!head) return false;
+
+//     const items: number[] = [head?.val];
+//     head = head.next;
+
+//     while (head) {
+//         items.push(head.val);
+//         head = head.next;
+//     }
+
+//     if (items.length === 1) return true;
+
+//     const middleIdx = Math.floor(items.length / 2) - 1;
+
+//     for (let i = middleIdx; i >= 0; i--) {
+//        if(items[i] !== items[items.length - 1 - i]) return false;
+//     }
+
+//     return true;
+// };
+
+// // runtime: 24ms/28.02%; memory: 82.06mb/51.71%
+// function isPalindrome(head: ListNode | null): boolean {
+//     const list = Array(10_000);
+//     let len = 0;
+
+//     while (head) {
+//         list[len++] = head.val;
+//         head = head.next;
+//     }
+
+//     for (let i = 0; i <= Math.floor(len / 2) - 1; i++) {
+//         if (list[i] !== list[len - 1 - i]) return false;
+//     }
+
+//     return true;
+// }
+
 function isPalindrome(head: ListNode | null): boolean {
-    if (!head) return false;
+    let slow: ListNode | null = head;
+    let fast: ListNode | null = head;
 
-    const items: number[] = [head?.val];
-    head = head.next;
+    let slowReversedHead: ListNode | null = null;
+    let originalSlowNext: ListNode | null;
+    while (fast && fast.next) {
+        fast = fast.next.next;
 
-    while (head) {
-        items.push(head.val);
-        head = head.next;
+        // if "fast" and it's ".next" is still not null, then all slow's are available
+         originalSlowNext = slow!.next;
+        slow!.next = slowReversedHead;
+        slowReversedHead = slow;
+        slow = originalSlowNext;
     }
 
-    if (items.length === 1) return true;
+    let middleHead: ListNode | null;
 
-    const middleIdx = Math.floor(items.length / 2) - 1;
-
-    for (let i = middleIdx; i >= 0; i--) {
-       if(items[i] !== items[items.length - 1 - i]) return false;
+    if (fast !== null) {
+        // odd number of list elements, skip first element
+        middleHead = slow!.next;
+    } else {
+        middleHead = slow!;
     }
+
+    while (middleHead && slowReversedHead) {
+        if (middleHead.val !== slowReversedHead.val) return false;
+
+        middleHead = middleHead.next;
+        slowReversedHead = slowReversedHead.next;
+    }
+
+    if (!middleHead && slowReversedHead) return false;
+    if (middleHead && !slowReversedHead) return false;
 
     return true;
-};
+}
 
 const testExamples: [ListNode | null, boolean][] = [
     [arrToList([1, 2, 2, 1]), true],
     [arrToList([1, 2, 3, 2, 1]), true],
+    [arrToList([1, 2, 1, 3, 1]), false],
+    [arrToList([1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1]), true],
+    [arrToList([1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 0]), false],
     [arrToList([8, 5, 1, 5, 8]), true],
     [arrToList([8, 5, 1, 5, 9]), false],
+    [arrToList([1, 2, 1, 1, 2, 1]), true],
+    [arrToList([1, 2, 1, 2, 1]), true],
+    [arrToList([1, 1, 1, 1]), true],
+    [arrToList([2, 2, 2, 2]), true],
+    [arrToList([1, 1, 1, 1, 1]), true],
+    [arrToList([2, 2, 2, 2, 2]), true],
     [arrToList([1, 2]), false],
     [arrToList([1, 1]), true],
     [arrToList([1]), true],
-
 ];
 
 checkGraphs(testExamples, isPalindrome);
-
-// [
-//     -1, // 0 
-//     -1, // 1
-//     0, // 2
-//     0, // 3
-//     1, // 4
-//     1, // 5
-//     2, // 6
-//     2, // 7
-//     3, // 8
-//     3, // 9
-//     4, // 10
-//     4, // 11
-// ].forEach((v, i) => console.log(`i: ${i}\t${Math.floor(i / 2) - 1} ${v} should be` ))
