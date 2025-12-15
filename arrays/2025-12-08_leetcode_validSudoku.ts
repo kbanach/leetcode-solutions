@@ -1,4 +1,4 @@
-import { debug, check, c } from './debug_utils.ts';
+import { debug, check, c } from '../debug_utils.ts';
 
 /**
  * Two Sum

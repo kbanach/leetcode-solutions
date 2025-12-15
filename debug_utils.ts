@@ -6,9 +6,11 @@ function startMeasuringPerformance(): void {
         performance.clearMeasures();
         performance.mark('mark_function_start');
 }
+
 function stopMeasuringPerformance(): void {
     performance.mark('mark_function_end');
 }
+
 function logPerformanceResults(): void {
     const perfResults = performance.measure(
                 'measure_func_perf',
