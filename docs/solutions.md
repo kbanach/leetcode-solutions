@@ -18,6 +18,6 @@
 
 -----
 
-[2025-12-12 Merge Two Sorted Lists](../2025-12-13_leetcode_graphs_mergeSortedLists.ts)
+[2025-12-13 Merge Two Sorted Lists](../2025-12-13_leetcode_graphs_mergeSortedLists.ts)
 
 <img src="2025-12-13_leetcode_graphs_mergeSortedLists.png" height="200"/>
