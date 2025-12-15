@@ -99,6 +99,10 @@ export function stringifyGraph(root: ListNode | null): string[] {
     const output = [];
     let currentNode: ListNode | null = root;
 
+    if (currentNode === null) {
+        output.push(stringifyNode(currentNode));
+    }
+
     while (currentNode !== null) {
         output.push(stringifyNode(currentNode));
         currentNode = currentNode.next;
@@ -110,6 +114,10 @@ export function stringifyGraph(root: ListNode | null): string[] {
 export function debugGraph(root: ListNode | null, onlyOneElement = false) {
     let currentNode: ListNode | null = root;
     let outputStr = '';
+
+    if (currentNode === null) {
+        outputStr = c(' null ', ['bgBlue']);
+    }
 
     while (currentNode !== null) {
         outputStr += c(' ' + currentNode.val + ' ', ['bgBlue']) + ((currentNode.next && !onlyOneElement) ? ' -> ' : '');
