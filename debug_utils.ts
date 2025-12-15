@@ -1,5 +1,24 @@
 import { styleText } from 'node:util';
 import { ListNode, debugGraph, stringifyGraph } from './graph_utils.ts';
+import { performance } from 'node:perf_hooks';
+
+function startMeasuringPerformance(): void {
+        performance.clearMeasures();
+        performance.mark('mark_function_start');
+}
+function stopMeasuringPerformance(): void {
+    performance.mark('mark_function_end');
+}
+function logPerformanceResults(): void {
+    const perfResults = performance.measure(
+                'measure_func_perf',
+                'mark_function_start',
+                'mark_function_end'
+            );
+    const runTimeMs = perfResults.duration;
+
+    console.log(`Run took:\t${c(' '+(runTimeMs.toFixed(4)+'ms '), ['bgGray'])}`)
+}
 
 export function debug(...log: any[]) {
     let s = [...log];
@@ -24,7 +43,11 @@ export function check(testExamples: any[], testedFn: Function): void {
         } else {
             console.log(`Input:     \t${inputs}`);
         }
+
+        startMeasuringPerformance();
         const returnValue = testedFn(...inputs);
+        stopMeasuringPerformance();
+        logPerformanceResults();
 
         // some methods change 'in-place' the input
         const output = typeof returnValue !== 'undefined' ? returnValue : test[0];
@@ -43,7 +66,6 @@ export function checkGraphs(graphsOnlyTestExamples: any[], testedFn: Function): 
 
     for (let test of graphsOnlyTestExamples) {
         if (moreThanOne) {
-            console.log();
             console.log([...Array(process.stdout.columns - 2)].map(() => '\u2550').join(''));
         }
 
@@ -62,8 +84,11 @@ export function checkGraphs(graphsOnlyTestExamples: any[], testedFn: Function): 
 
         const strOutputGraph = stringifyGraph(expected);
 
+        startMeasuringPerformance();
         const returnValue = testedFn(...inputs);
-        
+        stopMeasuringPerformance();
+        logPerformanceResults();
+
         // some methods change 'in-place' the input
         const output = typeof returnValue !== 'undefined' ? returnValue : test[0];
 
@@ -76,7 +101,6 @@ export function checkGraphs(graphsOnlyTestExamples: any[], testedFn: Function): 
             console.log(`Received: ${c('\t OK! ', ['bgGreen', 'white'])}`)
             debugGraph(output);
         }
-        console.log('\n');
         moreThanOne = true;
     }
 }
