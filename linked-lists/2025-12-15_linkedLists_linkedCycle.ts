@@ -1,4 +1,4 @@
-import { arrToList, debugGraph, ListNode } from "../graph_utils.ts";
+import { arrToList, debugGraph, ListNode } from "../linkedLists_utils.ts";
 
 /*
 Linked List Cycle

@@ -1,5 +1,5 @@
 import { checkGraphs } from "../debug_utils.ts";
-import { arrToList, ListNode } from "../graph_utils.ts";
+import { arrToList, ListNode } from "../linkedLists_utils.ts";
 
 /*
 Palindrome Linked List
@@ -78,7 +78,7 @@ function isPalindrome(head: ListNode | null): boolean {
         fast = fast.next.next;
 
         // if "fast" and it's ".next" is still not null, then all slow's are available
-         originalSlowNext = slow!.next;
+        originalSlowNext = slow!.next;
         slow!.next = slowReversedHead;
         slowReversedHead = slow;
         slow = originalSlowNext;
