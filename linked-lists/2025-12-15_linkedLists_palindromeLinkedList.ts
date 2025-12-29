@@ -1,5 +1,5 @@
 import { checkGraphs } from "../debug_utils.ts";
-import { arrToList, ListNode } from "../linkedLists_utils.ts";
+import { arrToList, ListNode } from "./linkedLists_utils.ts";
 
 /*
 Palindrome Linked List

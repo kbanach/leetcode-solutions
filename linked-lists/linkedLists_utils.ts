@@ -1,4 +1,4 @@
-import { debug, c } from './debug_utils.ts';
+import { debug, c } from '../debug_utils.ts';
 
 export class ListNode {
     val: number

@@ -1,6 +1,6 @@
-import { isArray, styleText } from 'node:util';
+import { styleText } from 'node:util';
 import { performance } from 'node:perf_hooks';
-import { ListNode, debugGraph, stringifyGraph, stringifyNode } from './linkedLists_utils.ts';
+import { ListNode, debugGraph, stringifyGraph, stringifyNode } from './linked-lists/linkedLists_utils.ts';
 
 function startMeasuringPerformance(): void {
     performance.clearMeasures();
@@ -175,7 +175,7 @@ export function checkGraphs(graphsOnlyTestExamples: any[], testedFn: Function): 
     }
 }
 
-export function color(str: any, colors: string[] = []) {
+export function color(str: Parameters<typeof styleText>[1], colors: Parameters<typeof styleText>[0] = []) {
     return styleText(colors, str);
 }
 

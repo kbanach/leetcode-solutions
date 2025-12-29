@@ -1,5 +1,5 @@
 import { checkGraphs } from '../debug_utils.ts';
-import { ListNode, exampleList, reverseLinkedList } from '../linkedLists_utils.ts';
+import { ListNode, exampleList, reverseLinkedList } from './linkedLists_utils.ts';
 
 /*
 Reverse Linked List
