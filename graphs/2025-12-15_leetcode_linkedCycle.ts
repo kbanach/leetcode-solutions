@@ -1,3 +1,5 @@
+import { arrToList, debugGraph, ListNode } from "../graph_utils.ts";
+
 /*
 Linked List Cycle
 
@@ -44,7 +46,6 @@ Return `true`* if there is a cycle in the linked list*. Otherwise, return `false
 
 */
 
-import { arrToList, debugGraph, ListNode } from "../graph_utils.ts";
 
 /**
  * Definition for singly-linked list.
